@@ -90,7 +90,7 @@ if($_POST && is_object($ticket) && $ticket->getId()):
                 Draft::deleteForNamespace('ticket.client.' . $ticket->getId());
                 // Drop attachments
                 $attachments->reset();
-                $tform->setSource(array());
+                $attachments->getForm()->setSource(array());
             } else {
                 $errors['err']=__('ไม่สามารถเพิ่มข้อความได้ กรุณาลองใหม่อีกครั้ง');
             }

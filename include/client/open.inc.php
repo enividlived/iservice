@@ -22,15 +22,15 @@ if ($info['topicId'] && ($topic=Topic::lookup($info['topicId']))) {
 }
 
 ?>
-<h1><?php echo __('Open a New Ticket');?></h1>
-<p><?php echo __('Please fill in the form below to open a new ticket.');?></p>
+<h1><?php echo __('สร้างคำขอใช้บริการใหม่');?></h1>
+<p><?php echo __('กรุณากรอกแบบฟอร์มด้านล่างเพื่อสร้างคำขอใช้บริการใหม่');?></p>
 <form id="ticketForm" method="post" action="open.php" enctype="multipart/form-data">
   <?php csrf_token(); ?>
   <input type="hidden" name="a" value="open">
   <table width="800" cellpadding="1" cellspacing="0" border="0">
     <tbody>
     <tr>
-        <td class="required"><?php echo __('Help Topic');?>:</td>
+        <td class="required"><?php echo __('แผนกที่ต้องการขอรับบริการ');?>:</td>
         <td>
             <!--CUSTOM FIELD: STORES THE FINAL SELECTED COMBO ID-->
             <input id="cmb_value" type="hidden" value="" name="topicId" />
@@ -46,29 +46,29 @@ if ($info['topicId'] && ($topic=Topic::lookup($info['topicId']))) {
                      ?>
                         <div class="combo_div" style="margin-bottom:5px;">
                             <select class="cmb" id="cmb<?php echo $i; ?>" style="float:none; width:300px;<?php if($i >0) echo 'display:none;';?>" name="topic<?php echo $i; ?>" >
-                                <option value="" >Select an option</option>
-                   <?php  
-                       
-                    
+                                <option value="" >เลือกแผนก/บริการที่ท่านต้องการ</option>
+                   <?php
+
+
                    //ADD ITEMS
-                  
+
 		 	foreach($topics[$i] as $id =>$item) {
                         $x = sprintf('<option value="%d" %s class="%d">%s</option>',$item['id'], ($_POST["topic".$i]==$item['id'])?'selected="selected"':'',$item['pid'], $item['topic']);
                         echo  $x;
                      }
-                   
+
                     ?>
 
                             </select>
-                         </div>  
-                           
+                         </div>
+
                     <?php
                 }
             } else { ?>
-                No Help Topics Available
+                ไม่พบบริการ
             <?php
             } ?>
-                
+
                 <div>
                     <font class="error">*&nbsp;<?php echo $errors['topicId']; ?></font>
                 </div>
@@ -85,8 +85,8 @@ if ($info['topicId'] && ($topic=Topic::lookup($info['topicId']))) {
         }
         else { ?>
             <tr><td colspan="2"><hr /></td></tr>
-        <tr><td><?php echo __('Email'); ?>:</td><td><?php echo $thisclient->getEmail(); ?></td></tr>
-        <tr><td><?php echo __('Client'); ?>:</td><td><?php echo $thisclient->getName(); ?></td></tr>
+        <tr><td><?php echo __('อีเมล'); ?>:</td><td><?php echo $thisclient->getEmail(); ?></td></tr>
+        <tr><td><?php echo __('ผู้ใช้'); ?>:</td><td><?php echo $thisclient->getName(); ?></td></tr>
         <?php } ?>
     </tbody>
     <tbody id="dynamic-form">
@@ -103,15 +103,15 @@ if ($info['topicId'] && ($topic=Topic::lookup($info['topicId']))) {
     <?php
     if($cfg && $cfg->isCaptchaEnabled() && (!$thisclient || !$thisclient->isValid())) {
         if($_POST && $errors && !$errors['captcha'])
-            $errors['captcha']=__('Please re-enter the text again');
+            $errors['captcha']=__('กรุณากรอกข้อความอีกครั้ง');
         ?>
     <tr class="captchaRow">
-        <td class="required"><?php echo __('CAPTCHA Text');?>:</td>
+        <td class="required"><?php echo __('ตัวอักษร CAPTCHA');?>:</td>
         <td>
             <span class="captcha"><img src="captcha.php" border="0" align="left"></span>
             &nbsp;&nbsp;
             <input id="captcha" type="text" name="captcha" size="6" autocomplete="off">
-            <em><?php echo __('Enter the text shown on the image.');?></em>
+            <em><?php echo __('กรุณากรอกข้อความในภาพด้านล่าง');?></em>
             <font class="error">*&nbsp;<?php echo $errors['captcha']; ?></font>
         </td>
     </tr>
@@ -122,9 +122,9 @@ if ($info['topicId'] && ($topic=Topic::lookup($info['topicId']))) {
   </table>
 <hr/>
   <p style="text-align:center;">
-        <input type="submit" value="<?php echo __('Create Ticket');?>">
-        <input type="reset" name="reset" value="<?php echo __('Reset');?>">
-        <input type="button" name="cancel" value="<?php echo __('Cancel'); ?>" onclick="javascript:
+        <input type="submit" value="<?php echo __('สร้างคำขอใช้บริการ');?>">
+        <input type="reset" name="reset" value="<?php echo __('รีเซ็ท');?>">
+        <input type="button" name="cancel" value="<?php echo __('ยกเลิก'); ?>" onclick="javascript:
             $('.richtext').each(function() {
                 var redactor = $(this).data('redactor');
                 if (redactor && redactor.opts.draftDelete)
@@ -166,7 +166,7 @@ if ($info['topicId'] && ($topic=Topic::lookup($info['topicId']))) {
 (window.jQuery||window.Zepto,window,document);
 
 var changeCombo = function(){
-    
+
     var value = $("#cmb_value").val();
     var data = $(':input[name]', '#dynamic-form').serialize();
     if(value ==""){
@@ -191,11 +191,11 @@ var fn = function(){
     var prevVal = null;
     //reset form
     $("#cmb_value").val("");
-    changeCombo(); 
+    changeCombo();
 
     //Clear select from post back
-    
-    
+
+
     //gets in when the helptopic is shorter than the rest
 	//use this if you dont want to be able to use root level topics in addition to their children.
 	//if(sel.attr("disabled") === "disabled"){
@@ -211,7 +211,7 @@ var fn = function(){
         }
 
     }
-    
+
 }
 
 
@@ -222,10 +222,10 @@ cmbs.change(fn);
 //executed on page load
 cmbs.each(fn);
 //cmbs.each(showhide);
-<?php 
+<?php
     //cmb#
     for($i = 0; $i < $size-1; $i++){
-        
+
         print'$("#cmb'.($i+1).'").chained("#cmb'.($i).'");';
     }
 
@@ -244,4 +244,3 @@ $(".cmb")
 	});
 });
 </script>
-

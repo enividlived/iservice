@@ -135,7 +135,7 @@ $pages = Page::getPages();
                     echo $logo->getId(); ?>" <?php
                     if ($logo->getId() == $current)
                         echo 'checked="checked"'; ?>/>
-                <img src="<?php echo $logo->getDownloadUrl(); ?>"
+                <img src="image.php?h=<?php echo $logo->getDownloadHash(); ?>"
                     alt="Custom Logo" valign="middle"
                     style="box-shadow: 0 0 0.5em rgba(0,0,0,0.5);
                         margin: 0.5em; height: 5em;

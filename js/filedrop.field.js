@@ -180,10 +180,10 @@
       }
       if (file.id)
         filenode.data('fileId', file.id);
-      if (file.download_url) {
+      if (file.download)
         filenode.find('.filename').prepend(
           $('<a class="no-pjax" target="_blank"></a>').text(file.name)
-            .attr('href', file.download_url)
+            .attr('href', 'file.php?h='+escape(file.download))
         );
       else
         filenode.find('.filename').prepend($('<span>').text(file.name));

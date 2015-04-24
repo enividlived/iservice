@@ -365,7 +365,7 @@ class AttachmentFile {
 
             // If the record exists in the database already, a file with the
             // same hash and size is already on file -- just return its ID
-            if (list($id, $key) = db_fetch_row(db_query($sql, false))) {
+            if ($deduplicate && (list($id, $key) = db_fetch_row(db_query($sql, false)))) {
                 $file['key'] = $key;
                 return $id;
             }

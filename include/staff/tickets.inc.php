@@ -424,19 +424,19 @@ if ($results) {
                 $lc='';
                 if($showassigned) {
                     if($row['staff_id'])
-                        $lc=sprintf('<span class="Icon staffAssigned">%s</span>',Format::truncate($row['staff'],100));
+                        $lc=sprintf('<span class="Icon staffAssigned">%s</span>',Format::truncate($row['staff'],150));
                     elseif($row['team_id'])
-                        $lc=sprintf('<span class="Icon teamAssigned">%s</span>',Format::truncate($row['team'],100));
+                        $lc=sprintf('<span class="Icon teamAssigned">%s</span>',Format::truncate($row['team'],150));
                     else
                         $lc=' ';
                 }else{
-                    $lc=Format::truncate($row['dept_name'],100);
+                    $lc=Format::truncate($row['dept_name'],150);
                 }
                 $tid=$row['number'];
 
                 $subject = Format::truncate($subject_field->display(
                     $subject_field->to_php($row['subject']) ?: $row['subject']
-                ), 100);
+                ), 150);
                 $threadcount=$row['thread_count'];
                 if(!strcasecmp($row['state'],'open') && !$row['isanswered'] && !$row['lock_id']) {
                     $tid=sprintf('<b>%s</b>',$tid);
@@ -472,7 +472,7 @@ if ($results) {
                     ?>
                 </td>
                 <td nowrap>&nbsp;<?php echo Format::htmlchars(
-                        Format::truncate($row['name'], 100, strpos($row['name'], '@'))); ?>&nbsp;</td>
+                        Format::truncate($row['name'], 150, strpos($row['name'], '@'))); ?>&nbsp;</td>
                 <?php
                 if($search && !$status){
                     $displaystatus=ucfirst($row['status']);

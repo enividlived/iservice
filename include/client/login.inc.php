@@ -31,7 +31,7 @@ if ($content) {
     <p>
         <input class="btn" type="submit" value="<?php echo __('เข้าสู่ระบบ'); ?>">
     <div>
-        <b><a href="manual_user.pdf"><?php echo __('คู่มือการใช้งานระบบ iService'); ?></a></b>
+        <b><a href="manual_user.pdf"><font color=FF0000><?php echo __('คู่มือการใช้งานระบบ iService'); ?></a></font></b>
     </div>
 <?php if ($suggest_pwreset) { ?>
         <a style="padding-top:4px;display:inline-block;" href="pwreset.php"><?php echo __('ลืมรหัสผ่าน'); ?></a>

@@ -76,14 +76,14 @@ class Ticket2PDF extends mPDF
 		$this->Image($logo, $this->lMargin, $this->tMargin, 0, 20);
         if (strpos($logo, INCLUDE_DIR) === false)
             unlink($logo);
-		$this->SetFont('Arial', 'B', 16);
+		$this->SetFont('garuda', 'B', 16);
 		$this->SetY($this->tMargin + 20);
         $this->SetX($this->lMargin);
         $this->WriteCell(0, 0, '', "B", 2, 'L');
 		$this->Ln(1);
-        $this->SetFont('Arial', 'B',10);
+        $this->SetFont('garuda', 'B',10);
         $this->WriteCell(0, 5, $cfg->getTitle(), 0, 0, 'L');
-        $this->SetFont('Arial', 'I',10);
+        $this->SetFont('garuda', 'I',10);
         $this->WriteCell(0, 5, Format::date($cfg->getDateTimeFormat(), Misc::gmtime(),
             $_SESSION['TZ_OFFSET'], $_SESSION['TZ_DST'])
             .' GMT '.$_SESSION['TZ_OFFSET'], 0, 1, 'R');
@@ -96,7 +96,7 @@ class Ticket2PDF extends mPDF
 
 		$this->SetY(-15);
         $this->WriteCell(0, 2, '', "T", 2, 'L');
-		$this->SetFont('Arial', 'I', 9);
+		$this->SetFont('garuda', 'I', 9);
         $this->WriteCell(0, 7, sprintf(__('Ticket #%1$s printed by %2$s on %3$s'),
             $this->getTicket()->getNumber(), $thisstaff->getUserName(), date('r')), 0, 0, 'L');
 		//$this->WriteCell(0,10,'Page '.($this->PageNo()-$this->pageOffset).' of {nb} '.$this->pageOffset.' '.$this->PageNo(),0,0,'R');
@@ -109,7 +109,7 @@ class Ticket2PDF extends mPDF
 
     function WriteText($w, $text, $border) {
 
-        $this->SetFont('Arial','',11);
+        $this->SetFont('garuda','',11);
         $this->MultiCell($w, 7, $text, $border, 'L');
 
     }
@@ -146,9 +146,9 @@ class Ticket2PDF extends mPDF
             '<style>'.file_get_contents(ROOT_DIR.'css/thread.css')
             .'</style>', 1, true, false);
 
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         $this->cMargin = 0;
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         $this->SetTextColor(10, 86, 142);
         $this->WriteCell($w, 7,sprintf(__('Ticket #%s'),$ticket->getNumber()), 0, 0, 'L');
         $this->Ln(7);
@@ -157,35 +157,35 @@ class Ticket2PDF extends mPDF
         $this->SetDrawColor(220, 220, 220);
         $this->SetFillColor(244, 250, 255);
         $this->SetX($this->lMargin);
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         $this->WriteCell($l, 7, __('Status'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, (string)$ticket->getStatus(), 1, 0, 'L', true);
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         $this->WriteCell($l, 7, __('Name'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, (string)$ticket->getName(), 1, 1, 'L', true);
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         $this->WriteCell($l, 7, __('Priority'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, $ticket->getPriority(), 1, 0, 'L', true);
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         $this->WriteCell($l, 7, __('Email'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, $ticket->getEmail(), 1, 1, 'L', true);
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         $this->WriteCell($l, 7, __('Department'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, $ticket->getDeptName(), 1, 0, 'L', true);
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         $this->WriteCell($l, 7, __('Phone'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, $ticket->getPhoneNumber(), 1, 1, 'L', true);
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         $this->WriteCell($l, 7, __('Create Date'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, Format::db_datetime($ticket->getCreateDate()), 1, 0, 'L', true);
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         $this->WriteCell($l, 7, __('Source'), 1, 0, 'L', true);
         $this->SetFont('');
         $source = ucfirst($ticket->getSource());
@@ -194,7 +194,7 @@ class Ticket2PDF extends mPDF
         $this->WriteCell($c, 7, $source, 1, 0, 'L', true);
         $this->Ln(12);
 
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         if($ticket->isOpen()) {
             $this->WriteCell($l, 7, __('Assigned To'), 1, 0, 'L', true);
             $this->SetFont('');
@@ -210,20 +210,20 @@ class Ticket2PDF extends mPDF
             $this->WriteCell($c, 7, $closedby, 1, 0, 'L', true);
         }
 
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         $this->WriteCell($l, 7, __('Help Topic'), 1, 0, 'L', true);
         $this->SetFont('');
-        $this->WriteCell($c, 7, $ticket->getHelpTopic(), 1, 1, 'L', true);
-        $this->SetFont('Arial', 'B', 11);
+        $this->WriteCell($c, 7, substr($ticket->getHelpTopic(),9), 1, 1, 'L', true);
+        $this->SetFont('garuda', 'B', 11);
         $this->WriteCell($l, 7, __('SLA Plan'), 1, 0, 'L', true);
         $this->SetFont('');
         $sla = $ticket->getSLA();
         $this->WriteCell($c, 7, $sla?$sla->getName():' -- ', 1, 0, 'L', true);
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         $this->WriteCell($l, 7, __('Last Response'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, Format::db_datetime($ticket->getLastRespDate()), 1, 1, 'L', true);
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         if($ticket->isOpen()) {
             $this->WriteCell($l, 7, __('Due Date'), 1, 0, 'L', true);
             $this->SetFont('');
@@ -234,7 +234,7 @@ class Ticket2PDF extends mPDF
             $this->WriteCell($c, 7, Format::db_datetime($ticket->getCloseDate()), 1, 0, 'L', true);
         }
 
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         $this->WriteCell($l, 7, __('Last Message'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, Format::db_datetime($ticket->getLastMsgDate()), 1, 1, 'L', true);
@@ -246,7 +246,7 @@ class Ticket2PDF extends mPDF
                 if (in_array($a->getField()->get('name'),
                             array('email','name','subject','phone','priority')))
                     continue;
-                $this->SetFont('Arial', 'B', 11);
+                $this->SetFont('garuda', 'B', 11);
                 if ($idx++ === 0) {
                     $this->Ln(5);
                     $this->SetFillColor(244, 250, 255);
@@ -265,7 +265,7 @@ class Ticket2PDF extends mPDF
         $this->SetFillColor(244, 250, 255);
         $this->Ln(10);
 
-        $this->SetFont('Arial', 'B', 11);
+        $this->SetFont('garuda', 'B', 11);
         $this->cMargin = 0;
         $this->SetTextColor(10, 86, 142);
         $this->WriteCell($w, 7,trim($ticket->getSubject()), 0, 0, 'L');
@@ -288,9 +288,9 @@ class Ticket2PDF extends mPDF
                 $color = $colors[$entry['thread_type']];
 
                 $this->SetFillColor($color[0], $color[1], $color[2]);
-                $this->SetFont('Arial', 'B', 11);
+                $this->SetFont('garuda', 'B', 11);
                 $this->WriteCell($w/2, 7, Format::db_datetime($entry['created']), 'LTB', 0, 'L', true);
-                $this->SetFont('Arial', '', 10);
+                $this->SetFont('garuda', '', 10);
                 $this->WriteCell($w, 7, Format::truncate($entry['title'], 50), 'TB', 0, 'L', true);
                 $this->WriteCell($w/2, 7, $entry['name'] ?: $entry['poster'], 'TBR', 1, 'L', true);
                 $this->SetFont('');

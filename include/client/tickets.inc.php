@@ -164,7 +164,7 @@ $negorder=$order=='DESC'?'ASC':'DESC'; //Negate the sorting
             $dept= $row['ispublic']? $row['dept_name'] : $defaultDept;
             $subject = Format::truncate($subject_field->display(
                 $subject_field->to_php($row['subject']) ?: $row['subject']
-            ),100);
+            ),150);
             if($row['attachments'])
                 $subject.='  &nbsp;&nbsp;<span class="Icon file"></span>';
 
@@ -185,7 +185,7 @@ $negorder=$order=='DESC'?'ASC':'DESC'; //Negate the sorting
                 <td>
                     <a href="tickets.php?id=<?php echo $row['ticket_id']; ?>"><?php echo $subject; ?></a>
                 </td>
-                <td>&nbsp;<?php echo Format::truncate($dept,100); ?></td>
+                <td>&nbsp;<?php echo Format::truncate($dept,150?></td>
             </tr>
         <?php
         }

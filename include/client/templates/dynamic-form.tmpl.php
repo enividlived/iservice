@@ -5,7 +5,7 @@
     ?>
     <tr><td colspan="2"><hr />
     <div class="form-header" style="margin-bottom:0.5em">
-    <?php print ($form instanceof DynamicFormEntry) 
+    <?php print ($form instanceof DynamicFormEntry)
         ? $form->getForm()->getMedia() : $form->getMedia(); ?>
     <h3><?php echo Format::htmlchars($form->getTitle()); ?></h3>
     <em><?php echo Format::htmlchars($form->getInstructions()); ?></em>
@@ -32,7 +32,7 @@
             }
             $field->render('client'); ?>
             <?php if ($field->get('required')) { ?>
-                <font class="error">*</font>
+                <font class="error">*กรุณาระบุข้อมูล*</font>
             <?php
             }
             if ($field->get('hint') && !$field->isBlockLevel()) { ?>

@@ -2181,7 +2181,7 @@ class Ticket {
         $fields['user_id']  = array('type'=>'int',      'required'=>0, 'error'=>__('Invalid user-id'));
 
         if(!Validator::process($fields, $vars, $errors) && !$errors['err'])
-            $errors['err'] = __('Missing or invalid data - check the errors and try again');
+            $errors['err'] = __('เกิดข้อผิดพลาดในช่องแบบฟอร์ม - กรุณาแก้ไขและลองใหม่อีกครั้ง');
 
         if($vars['duedate']) {
             if($this->isClosed())
@@ -2553,7 +2553,7 @@ class Ticket {
         }
 
         if(!Validator::process($fields, $vars, $errors) && !$errors['err'])
-            $errors['err'] =__('Missing or invalid data - check the errors and try again');
+            $errors['err'] =__('เกิดข้อผิดพลาดในช่องแบบฟอร์ม - กรุณาแก้ไขและลองใหม่อีกครั้ง');
 
         //Make sure the due date is valid
         if($vars['duedate']) {

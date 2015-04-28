@@ -291,7 +291,7 @@ class FormField {
         # Validates a user-input into an instance of this field on a dynamic
         # form
         if ($this->get('required') && !$value && $this->hasData())
-            $this->_errors[] = sprintf(__('%s is a required field'),
+            $this->_errors[] = sprintf(__('กรุณากรอกข้อมูลให้ครบถ้วน'),
                 $this->getLabel());
 
         # Perform declared validators for the field
@@ -2126,7 +2126,7 @@ class FileUploadWidget extends Widget {
             ?>" class="filedrop"><div class="files"></div>
             <div class="dropzone"><i class="icon-upload"></i>
             <?php echo sprintf(
-                __('Drop files here or %s choose them %s'),
+                __('ลากไฟล์ที่ท่านต้องการมาที่นี่ หรือกดปุ่ม %s เลือกไฟล์ %s'),
                 '<a href="#" class="manual">', '</a>'); ?>
         <input type="file" multiple="multiple"
             id="file-<?php echo $id; ?>" style="display:none;"

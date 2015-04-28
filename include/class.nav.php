@@ -113,12 +113,12 @@ class StaffNav {
     function getTabs(){
         if(!$this->tabs) {
             $this->tabs=array();
-            $this->tabs['dashboard'] = array('desc'=>__('Dashboard'),'href'=>'dashboard.php','title'=>__('Agent Dashboard'), "class"=>"no-pjax");
-            $this->tabs['users'] = array('desc' => __('Users'), 'href' => 'users.php', 'title' => __('User Directory'));
-            $this->tabs['tickets'] = array('desc'=>__('Tickets'),'href'=>'tickets.php','title'=>__('Ticket Queue'));
-            $this->tabs['kbase'] = array('desc'=>__('Knowledgebase'),'href'=>'kb.php','title'=>__('Knowledgebase'));
+            $this->tabs['dashboard'] = array('desc'=>__('สถิติการดำเนินงาน'),'href'=>'dashboard.php','title'=>__('สถิติการดำเนินงานเจ้าหน้าที่'), "class"=>"no-pjax");
+            $this->tabs['users'] = array('desc' => __('ผู้ใช้'), 'href' => 'users.php', 'title' => __('สารบัญผู้ใช้'));
+            $this->tabs['tickets'] = array('desc'=>__('คำขอใช้บริการ'),'href'=>'tickets.php','title'=>__('คิวคำขอใช้บริการ'));
+            $this->tabs['kbase'] = array('desc'=>__('ฐานความรู้'),'href'=>'kb.php','title'=>__('ฐานความรู้'));
             if (count($this->getRegisteredApps()))
-                $this->tabs['apps']=array('desc'=>__('Applications'),'href'=>'apps.php','title'=>__('Applications'));
+                $this->tabs['apps']=array('desc'=>__('แอพพลิเคชั่น'),'href'=>'apps.php','title'=>__('แอพพลิเคชั่น'));
         }
 
         return $this->tabs;
@@ -133,17 +133,17 @@ class StaffNav {
             $subnav=array();
             switch(strtolower($k)){
                 case 'tickets':
-                    $subnav[]=array('desc'=>__('Tickets'),'href'=>'tickets.php','iconclass'=>'Ticket', 'droponly'=>true);
+                    $subnav[]=array('desc'=>__('คำขอใช้บริการ'),'href'=>'tickets.php','iconclass'=>'Ticket', 'droponly'=>true);
                     if($staff) {
                         if(($assigned=$staff->getNumAssignedTickets()))
-                            $subnav[]=array('desc'=>__('My&nbsp;Tickets')." ($assigned)",
+                            $subnav[]=array('desc'=>__('คำขอใช้บริการของฉัน')." ($assigned)",
                                             'href'=>'tickets.php?status=assigned',
                                             'iconclass'=>'assignedTickets',
                                             'droponly'=>true);
 
                         if($staff->canCreateTickets())
-                            $subnav[]=array('desc'=>__('New Ticket'),
-                                            'title' => __('Open a New Ticket'),
+                            $subnav[]=array('desc'=>__('สร้างคำขอใช้บริการ'),
+                                            'title' => __('สร้างคำขอใช้บริการใหม่'),
                                             'href'=>'tickets.php?a=open',
                                             'iconclass'=>'newTicket',
                                             'id' => 'new-ticket',
@@ -151,21 +151,21 @@ class StaffNav {
                     }
                     break;
                 case 'dashboard':
-                    $subnav[]=array('desc'=>__('Dashboard'),'href'=>'dashboard.php','iconclass'=>'logs');
-                    $subnav[]=array('desc'=>__('Agent Directory'),'href'=>'directory.php','iconclass'=>'teams');
-                    $subnav[]=array('desc'=>__('My Profile'),'href'=>'profile.php','iconclass'=>'users');
+                    $subnav[]=array('desc'=>__('สถิติการดำเนินงาน'),'href'=>'dashboard.php','iconclass'=>'logs');
+                    $subnav[]=array('desc'=>__('สารบัญเจ้าหน้าที่'),'href'=>'directory.php','iconclass'=>'teams');
+                    $subnav[]=array('desc'=>__('โปรไฟล์ของฉัน'),'href'=>'profile.php','iconclass'=>'users');
                     break;
                 case 'users':
-                    $subnav[] = array('desc' => __('User Directory'), 'href' => 'users.php', 'iconclass' => 'teams');
-                    $subnav[] = array('desc' => __('Organizations'), 'href' => 'orgs.php', 'iconclass' => 'departments');
+                    $subnav[] = array('desc' => __('สารบัญผู้ใช้'), 'href' => 'users.php', 'iconclass' => 'teams');
+                    $subnav[] = array('desc' => __('บริษัท'), 'href' => 'orgs.php', 'iconclass' => 'departments');
                     break;
                 case 'kbase':
-                    $subnav[]=array('desc'=>__('FAQs'),'href'=>'kb.php', 'urls'=>array('faq.php'), 'iconclass'=>'kb');
+                    $subnav[]=array('desc'=>__('ฐานความรู้'),'href'=>'kb.php', 'urls'=>array('faq.php'), 'iconclass'=>'kb');
                     if($staff) {
                         if($staff->canManageFAQ())
-                            $subnav[]=array('desc'=>__('Categories'),'href'=>'categories.php','iconclass'=>'faq-categories');
+                            $subnav[]=array('desc'=>__('หัวข้อฐานความรู้'),'href'=>'categories.php','iconclass'=>'faq-categories');
                         if ($cfg->isCannedResponseEnabled() && $staff->canManageCannedResponses())
-                            $subnav[]=array('desc'=>__('Canned Responses'),'href'=>'canned.php','iconclass'=>'canned');
+                            $subnav[]=array('desc'=>__('คำตอบสำเร็จรูป'),'href'=>'canned.php','iconclass'=>'canned');
                     }
                    break;
                 case 'apps':
@@ -318,9 +318,9 @@ class UserNav {
 
             $navs = array();
             $user = $this->user;
-            $navs['home']=array('desc'=>__('Support Center Home'),'href'=>'index.php','title'=>'');
+            $navs['home']=array('desc'=>__('หน้าหลัก'),'href'=>'index.php','title'=>'');
             if($cfg && $cfg->isKnowledgebaseEnabled())
-                $navs['kb']=array('desc'=>__('Knowledgebase'),'href'=>'kb/index.php','title'=>'');
+                $navs['kb']=array('desc'=>__('ฐานความรู้'),'href'=>'kb/index.php','title'=>'');
 
             // Show the "Open New Ticket" link unless BOTH client
             // registration is disabled and client login is required for new
@@ -328,19 +328,19 @@ class UserNav {
             // possible for web clients.
             if ($cfg->getClientRegistrationMode() != 'disabled'
                     || !$cfg->isClientLoginRequired())
-                $navs['new']=array('desc'=>__('Open a New Ticket'),'href'=>'open.php','title'=>'');
+                $navs['new']=array('desc'=>__('สร้างคำขอใช้บริการใหม่'),'href'=>'open.php','title'=>'');
             if($user && $user->isValid()) {
                 if(!$user->isGuest()) {
-                    $navs['tickets']=array('desc'=>sprintf(__('Tickets (%d)'),$user->getNumTickets()),
+                    $navs['tickets']=array('desc'=>sprintf(__('คำขอใช้บริการ (%d)'),$user->getNumTickets()),
                                            'href'=>'tickets.php',
-                                            'title'=>__('Show all tickets'));
+                                            'title'=>__('แสดงคำขอใช้บริการทั้งหมด'));
                 } else {
-                    $navs['tickets']=array('desc'=>__('View Ticket Thread'),
+                    $navs['tickets']=array('desc'=>__('แสดงคำขอใช้บริการ'),
                                            'href'=>sprintf('tickets.php?id=%d',$user->getTicketId()),
-                                           'title'=>__('View ticket status'));
+                                           'title'=>__('แสดงคำขอใช้บริการ'));
                 }
             } else {
-                $navs['status']=array('desc'=>__('Check Ticket Status'),'href'=>'view.php','title'=>'');
+                $navs['status']=array('desc'=>__('ตรวจสอบสถานะคำขอใช้บริการ'),'href'=>'view.php','title'=>'');
             }
             $this->navs=$navs;
         }

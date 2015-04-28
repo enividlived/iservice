@@ -185,7 +185,7 @@ $negorder=$order=='DESC'?'ASC':'DESC'; //Negate the sorting
                 <td>
                     <a href="tickets.php?id=<?php echo $row['ticket_id']; ?>"><?php echo $subject; ?></a>
                 </td>
-                <td>&nbsp;<?php echo Format::truncate($dept,150?></td>
+                <td>&nbsp;<?php echo Format::truncate($dept,150); ?></td>
             </tr>
         <?php
         }

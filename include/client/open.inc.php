@@ -70,7 +70,7 @@ if ($info['topicId'] && ($topic=Topic::lookup($info['topicId']))) {
             } ?>
 
                 <div>
-                    <font class="error">*&nbsp;<?php echo $errors['topicId']; ?></font>
+                    <font class="error">*กรุณาเลือกประเภทบริการ*&nbsp;<?php echo $errors['topicId']; ?></font>
                 </div>
 
         </td>

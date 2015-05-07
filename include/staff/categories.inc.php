@@ -121,7 +121,7 @@ endif;
     <a class="close" href=""><i class="icon-remove-circle"></i></a>
     <hr/>
     <p class="confirm-action" style="display:none;" id="make_public-confirm">
-        <?php echo sprintf(__('คุณแน่ใจหรือว่าต้องการทำให้ %s เป็น <b>สาธารณะ/b>?'),
+        <?php echo sprintf(__('คุณแน่ใจหรือว่าต้องการทำให้ %s เป็น <b>สาธารณะ</b>?'),
             _N('หัวข้อบทความที่เลือก', 'หัวข้อบทความที่เลือก', 2));?>
     </p>
     <p class="confirm-action" style="display:none;" id="make_private-confirm">

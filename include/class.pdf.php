@@ -307,7 +307,8 @@ class Ticket2PDF extends mPDF
                         $text.="<div>Files Attached: [".implode(', ',$files)."]</div>";
                         $text.="<div>".sprintf(__('Files Attached: [%s]'),implode(', ',$files))."</div>";
                 }
-                $this->WriteHtml('<div class="thread-body">'.$text.'</div>', 2, false, false);
+				$this->WriteHtml('<div class="thread-body"><p style="font-family:garuda; font-size:15px; ">'.$text.'</p></div>', 2, false, false);
+    //            $this->WriteHtml('<div class="thread-body">'.$text.'</div>', 2, false, false);
                 $this->Ln(5);
             }
         }

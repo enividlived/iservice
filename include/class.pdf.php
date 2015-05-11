@@ -86,7 +86,7 @@ class Ticket2PDF extends mPDF
         $this->SetFont('garuda', 'I',10);
         $this->WriteCell(0, 5, Format::date($cfg->getDateTimeFormat(), Misc::gmtime(),
             $_SESSION['TZ_OFFSET'], $_SESSION['TZ_DST'])
-            .' GMT '.$_SESSION['TZ_OFFSET'], 0, 1, 'R');
+            , 0, 1, 'R');
 		$this->Ln(5);
 	}
 
@@ -100,7 +100,7 @@ class Ticket2PDF extends mPDF
         $this->WriteCell(0, 7, sprintf(__('คำขอใช้บริการเลขที่ %1$s พิมพ์โดย %2$s ณ วันที่ %3$s'),
             $this->getTicket()->getNumber(), $thisstaff->getFirstName(), date('j F Y H:i:s')), 0, 0, 'L');
 		//$this->WriteCell(0,10,'Page '.($this->PageNo()-$this->pageOffset).' of {nb} '.$this->pageOffset.' '.$this->PageNo(),0,0,'R');
-		$this->WriteCell(0, 7, sprintf(__('Page %d'), ($this->PageNo() - $this->pageOffset)), 0, 0, 'R');
+		$this->WriteCell(0, 7, sprintf(__('หน้า %d'), ($this->PageNo() - $this->pageOffset)), 0, 0, 'R');
 	}
 
     function Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='') {
@@ -150,7 +150,7 @@ class Ticket2PDF extends mPDF
         $this->cMargin = 0;
         $this->SetFont('garuda', 'B', 11);
         $this->SetTextColor(10, 86, 142);
-        $this->WriteCell($w, 7,sprintf(__('Ticket #%s'),$ticket->getNumber()), 0, 0, 'L');
+        $this->WriteCell($w, 7,sprintf(__('คำขอใช้บริการเลขที่ %s'),$ticket->getNumber()), 0, 0, 'L');
         $this->Ln(7);
         $this->cMargin = 3;
         $this->SetTextColor(0);
@@ -158,35 +158,35 @@ class Ticket2PDF extends mPDF
         $this->SetFillColor(244, 250, 255);
         $this->SetX($this->lMargin);
         $this->SetFont('garuda', 'B', 11);
-        $this->WriteCell($l, 7, __('Status'), 1, 0, 'L', true);
+        $this->WriteCell($l, 7, __('สถานะ'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, (string)$ticket->getStatus(), 1, 0, 'L', true);
         $this->SetFont('garuda', 'B', 11);
-        $this->WriteCell($l, 7, __('Name'), 1, 0, 'L', true);
+        $this->WriteCell($l, 7, __('ชื่อ'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, (string)$ticket->getName(), 1, 1, 'L', true);
         $this->SetFont('garuda', 'B', 11);
-        $this->WriteCell($l, 7, __('Priority'), 1, 0, 'L', true);
+        $this->WriteCell($l, 7, __('ความสำคัญ'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, $ticket->getPriority(), 1, 0, 'L', true);
         $this->SetFont('garuda', 'B', 11);
-        $this->WriteCell($l, 7, __('Email'), 1, 0, 'L', true);
+        $this->WriteCell($l, 7, __('อีเมล์'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, $ticket->getEmail(), 1, 1, 'L', true);
         $this->SetFont('garuda', 'B', 11);
-        $this->WriteCell($l, 7, __('Department'), 1, 0, 'L', true);
+        $this->WriteCell($l, 7, __('แผนก'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, $ticket->getDeptName(), 1, 0, 'L', true);
         $this->SetFont('garuda', 'B', 11);
-        $this->WriteCell($l, 7, __('Phone'), 1, 0, 'L', true);
+        $this->WriteCell($l, 7, __('เบอร์ติดต่อ'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, $ticket->getPhoneNumber(), 1, 1, 'L', true);
         $this->SetFont('garuda', 'B', 11);
-        $this->WriteCell($l, 7, __('Create Date'), 1, 0, 'L', true);
+        $this->WriteCell($l, 7, __('วันที่สร้าง'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, Format::db_datetime($ticket->getCreateDate()), 1, 0, 'L', true);
         $this->SetFont('garuda', 'B', 11);
-        $this->WriteCell($l, 7, __('Source'), 1, 0, 'L', true);
+        $this->WriteCell($l, 7, __('สร้างคำขอผ่านทาง'), 1, 0, 'L', true);
         $this->SetFont('');
         $source = ucfirst($ticket->getSource());
         if($ticket->getIP())
@@ -196,46 +196,46 @@ class Ticket2PDF extends mPDF
 
         $this->SetFont('garuda', 'B', 11);
         if($ticket->isOpen()) {
-            $this->WriteCell($l, 7, __('Assigned To'), 1, 0, 'L', true);
+            $this->WriteCell($l, 7, __('มอบหมายให้'), 1, 0, 'L', true);
             $this->SetFont('');
             $this->WriteCell($c, 7, $ticket->isAssigned()?$ticket->getAssigned():' -- ', 1, 0, 'L', true);
         } else {
 
-            $closedby = __('unknown');
+            $closedby = __('ไม่ระบุตัวตน');
             if(($staff = $ticket->getStaff()))
                 $closedby = (string) $staff->getName();
 
-            $this->WriteCell($l, 7, __('Closed By'), 1, 0, 'L', true);
+            $this->WriteCell($l, 7, __('ปิดคำขอโดย'), 1, 0, 'L', true);
             $this->SetFont('');
             $this->WriteCell($c, 7, $closedby, 1, 0, 'L', true);
         }
 
         $this->SetFont('garuda', 'B', 11);
-        $this->WriteCell($l, 7, __('Help Topic'), 1, 0, 'L', true);
+        $this->WriteCell($l, 7, __('บริการ'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, substr($ticket->getHelpTopic(),9), 1, 1, 'L', true);
         $this->SetFont('garuda', 'B', 11);
-        $this->WriteCell($l, 7, __('SLA Plan'), 1, 0, 'L', true);
+        $this->WriteCell($l, 7, __('กำหนดการ'), 1, 0, 'L', true);
         $this->SetFont('');
         $sla = $ticket->getSLA();
         $this->WriteCell($c, 7, $sla?$sla->getName():' -- ', 1, 0, 'L', true);
         $this->SetFont('garuda', 'B', 11);
-        $this->WriteCell($l, 7, __('Last Response'), 1, 0, 'L', true);
+        $this->WriteCell($l, 7, __('ผู้สร้างตอบล่าสุด'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, Format::db_datetime($ticket->getLastRespDate()), 1, 1, 'L', true);
         $this->SetFont('garuda', 'B', 11);
         if($ticket->isOpen()) {
-            $this->WriteCell($l, 7, __('Due Date'), 1, 0, 'L', true);
+            $this->WriteCell($l, 7, __('กำหนดสิ้นสุด'), 1, 0, 'L', true);
             $this->SetFont('');
             $this->WriteCell($c, 7, Format::db_datetime($ticket->getEstDueDate()), 1, 0, 'L', true);
         } else {
-            $this->WriteCell($l, 7, __('Close Date'), 1, 0, 'L', true);
+            $this->WriteCell($l, 7, __('ปิดคำขอเมื่อ'), 1, 0, 'L', true);
             $this->SetFont('');
             $this->WriteCell($c, 7, Format::db_datetime($ticket->getCloseDate()), 1, 0, 'L', true);
         }
 
         $this->SetFont('garuda', 'B', 11);
-        $this->WriteCell($l, 7, __('Last Message'), 1, 0, 'L', true);
+        $this->WriteCell($l, 7, __('เจ้าหน้าที่ตอบล่าสุด'), 1, 0, 'L', true);
         $this->SetFont('');
         $this->WriteCell($c, 7, Format::db_datetime($ticket->getLastMsgDate()), 1, 1, 'L', true);
 
@@ -248,7 +248,7 @@ class Ticket2PDF extends mPDF
                     continue;
                 $this->SetFont('garuda', 'B', 11);
                 if ($idx++ === 0) {
-                    $this->Ln(5);
+                    $this->Ln(7);
                     $this->SetFillColor(244, 250, 255);
                     $this->WriteCell(($l+$c)*2, 7, $a->getForm()->get('title'),
                         1, 0, 'L', true);

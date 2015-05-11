@@ -97,8 +97,8 @@ class Ticket2PDF extends mPDF
 		$this->SetY(-15);
         $this->WriteCell(0, 2, '', "T", 2, 'L');
 		$this->SetFont('garuda', 'I', 9);
-        $this->WriteCell(0, 7, sprintf(__('Ticket #%1$s printed by %2$s on %3$s'),
-            $this->getTicket()->getNumber(), $thisstaff->getUserName(), date('r')), 0, 0, 'L');
+        $this->WriteCell(0, 7, sprintf(__('คำขอใช้บริการเลขที่ %1$s พิมพ์โดย %2$s ณ วันที่ %3$s'),
+            $this->getTicket()->getNumber(), $thisstaff->getFirstName(), date('j F Y H:i:s')), 0, 0, 'L');
 		//$this->WriteCell(0,10,'Page '.($this->PageNo()-$this->pageOffset).' of {nb} '.$this->pageOffset.' '.$this->PageNo(),0,0,'R');
 		$this->WriteCell(0, 7, sprintf(__('Page %d'), ($this->PageNo() - $this->pageOffset)), 0, 0, 'R');
 	}

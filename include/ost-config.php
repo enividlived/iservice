@@ -46,14 +46,14 @@ if(OSTINSTALLED!=TRUE){
 define('SECRET_SALT','6b4eFkJhe3Q2Y89twzf8T.9X9ytq0ITt');
 
 #Default admin email. Used only on db connection issues and related alerts.
-define('ADMIN_EMAIL','dark_flame_master@gakuentoshi.gov');
+define('ADMIN_EMAIL','Electro_master@gakuentoshi.gov');
 
 #Mysql Login info
 define('DBTYPE','mysql');
 define('DBHOST','localhost');
 define('DBNAME','osticket');
 define('DBUSER','root');
-define('DBPASS','qwerty1@#$');
+define('DBPASS','admin');
 
 #Timezone
 date_default_timezone_set("Asia/Bangkok");

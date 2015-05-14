@@ -10,7 +10,7 @@ $info=($_POST && $errors)?Format::input($_POST):array();
 
 //Auto-lock the ticket if locking is enabled.. If already locked by the user then it simply renews.
 if($cfg->getLockTime() && !$ticket->acquireLock($thisstaff->getId(),$cfg->getLockTime()))
-    $warn.=__('ไม่สามารถล็อคคำขอใช้บริการ');
+    $warn.=__('ไม่สามารถเข้าถึงคำขอใช้บริการ');
 
 //Get the goodies.
 $dept  = $ticket->getDept();  //Dept
@@ -38,10 +38,10 @@ elseif ($ticket->isAssigned()
 if (!$errors['err']) {
 
     if ($lock && $lock->getStaffId()!=$thisstaff->getId())
-        $errors['err'] = sprintf(__('คำขอใช้บริการนี้กำลังถูกล็อคโดย %s'),
+        $errors['err'] = sprintf(__('คำขอใช้บริการนี้กำลังถูกใช้งานโดย %s'),
                 $lock->getStaffName());
     elseif (($emailBanned=TicketFilter::isBanned($ticket->getEmail())))
-        $errors['err'] = __('อีเมลอยู่ในรายการที่ถูกแบน! ต้องปลดออกก่อนจึงจะตอบกลับได้');
+        $errors['err'] = __('อีเมลอยู่ในรายการที่ถูกแบน! ต้องปลดแบนก่อนจึงจะตอบกลับได้');
 }
 
 $unbannable=($emailBanned) ? BanList::includes($ticket->getEmail()) : false;
@@ -54,7 +54,7 @@ if($ticket->isOverdue())
     <tr>
         <td width="20%" class="has_bottom_border">
              <h2><a href="tickets.php?id=<?php echo $ticket->getId(); ?>"
-             title="<?php echo __('รีเฟรช่'); ?>"><i class="icon-refresh"></i>
+             title="<?php echo __('รีเฟรช'); ?>"><i class="icon-refresh"></i>
              <?php echo sprintf(__('เลขที่ %s'), $ticket->getNumber()); ?></a></h2>
         </td>
         <td width="auto" class="flush-right has_bottom_border">
@@ -90,9 +90,9 @@ if($ticket->isOverdue())
             <div id="action-dropdown-print" class="action-dropdown anchor-right">
               <ul>
                  <li><a class="no-pjax" target="_blank" href="tickets.php?id=<?php echo $ticket->getId(); ?>&a=print&notes=0"><i
-                 class="icon-file-alt"></i> <?php echo __('เนื้อหา'); ?></a>
+                 class="icon-file-alt"></i> <?php echo __('เฉพาะบทสนทนา'); ?></a>
                  <li><a class="no-pjax" target="_blank" href="tickets.php?id=<?php echo $ticket->getId(); ?>&a=print&notes=1"><i
-                 class="icon-file-text-alt"></i> <?php echo __('เนื้อหา + บันทึกย่อ'); ?></a>
+                 class="icon-file-text-alt"></i> <?php echo __('บทสนทนา + บันทึกระบบ'); ?></a>
               </ul>
             </div>
             <div id="action-dropdown-more" class="action-dropdown anchor-right">
@@ -101,7 +101,7 @@ if($ticket->isOverdue())
                  if($thisstaff->canEditTickets()) { ?>
                     <li><a class="change-user" href="#tickets/<?php
                     echo $ticket->getId(); ?>/change-user"><i class="icon-user"></i> <?php
-                    echo __('เปลี่ยนเจ้าของ'); ?></a></li>
+                    echo __('เปลี่ยนผู้สร้าง'); ?></a></li>
                 <?php
                  }
                  if($thisstaff->canDeleteTickets()) {
@@ -128,7 +128,7 @@ if($ticket->isOverdue())
 
                     if($ticket->isAnswered()) { ?>
                     <li><a class="confirm-action" id="ticket-unanswered" href="#unanswered"><i class="icon-circle-arrow-left"></i> <?php
-                            echo __('ยังไม่ได้ตอบ'); ?></a></li>
+                            echo __('ยังไม่ได้ตอบกลับ'); ?></a></li>
                     <?php
                     } else { ?>
                     <li><a class="confirm-action" id="ticket-answered" href="#answered"><i class="icon-circle-arrow-right"></i> <?php
@@ -268,7 +268,7 @@ if($ticket->isOverdue())
                 <?php
                 if($ticket->isOpen()) { ?>
                 <tr>
-                    <th width="100"><?php echo __('มอบหมายให้');?>:</th>
+                    <th width="100"><?php echo __('มอบหมาย');?>:</th>
                     <td>
                         <?php
                         if($ticket->isAssigned())
@@ -281,7 +281,7 @@ if($ticket->isOverdue())
                 <?php
                 } else { ?>
                 <tr>
-                    <th width="100"><?php echo __('ปิดงานโดย');?>:</th>
+                    <th width="100"><?php echo __('ผู้ดำเนินงาน');?>:</th>
                     <td>
                         <?php
                         if(($staff = $ticket->getStaff()))
@@ -300,13 +300,13 @@ if($ticket->isOverdue())
                 <?php
                 if($ticket->isOpen()){ ?>
                 <tr>
-                    <th><?php echo __('ครบกำหนดวันที่');?>:</th>
+                    <th><?php echo __('ครบกำหนด');?>:</th>
                     <td><?php echo Format::db_datetime($ticket->getEstDueDate()); ?></td>
                 </tr>
                 <?php
                 }else { ?>
                 <tr>
-                    <th><?php echo __('ปิดวันที่');?>:</th>
+                    <th><?php echo __('สิ้นสุดการดำเนินงาน');?>:</th>
                     <td><?php echo Format::db_datetime($ticket->getCloseDate()); ?></td>
                 </tr>
                 <?php
@@ -317,15 +317,15 @@ if($ticket->isOverdue())
         <td width="50%">
             <table cellspacing="0" cellpadding="4" width="100%" border="0">
                 <tr>
-                    <th width="100"><?php echo __('บริการ');?>:</th>
+                    <th width="100"><?php echo __('ประเภทบริการ');?>:</th>
                     <td><?php echo Format::htmlchars($ticket->getHelpTopic()); ?></td>
                 </tr>
                 <tr>
-                    <th nowrap><?php echo __('ข้อความล่าสุด');?>:</th>
+                    <th nowrap><?php echo __('ข้อความล่าสุดโดยผู้ใช้');?>:</th>
                     <td><?php echo Format::db_datetime($ticket->getLastMsgDate()); ?></td>
                 </tr>
                 <tr>
-                    <th nowrap><?php echo __('ตอบกลับล่าสุด');?>:</th>
+                    <th nowrap><?php echo __('ตอบกลับล่าสุดโดยเจ้าหน้าที่');?>:</th>
                     <td><?php echo Format::db_datetime($ticket->getLastRespDate()); ?></td>
                 </tr>
             </table>
@@ -474,7 +474,7 @@ $tcount+= $ticket->getNumNotes();
            <tbody id="to_sec">
             <tr>
                 <td width="120">
-                    <label><strong><?php echo __('ถึง'); ?>:</strong></label>
+                    <label><strong><?php echo __('ข้อความถึง'); ?>:</strong></label>
                 </td>
                 <td>
                     <?php
@@ -536,13 +536,13 @@ $tcount+= $ticket->getNumNotes();
                 <td>
 <?php if ($cfg->isCannedResponseEnabled()) { ?>
                     <select id="cannedResp" name="cannedResp">
-                        <option value="0" selected="selected"><?php echo __('เลือกข้อความที่กำหนดไว้');?></option>
-                        <option value='original'><?php echo __('ข้อความต้นฉบับ'); ?></option>
-                        <option value='lastmessage'><?php echo __('ข้อความล่าสุด'); ?></option>
+                        <option value="0" selected="selected"><?php echo __('เลือกคำตอบสำเร็จรูป');?></option>
+                        <option value='original'><?php echo __('ข้อความต้นฉบับของผู้ใช้'); ?></option>
+                        <option value='lastmessage'><?php echo __('ข้อความล่าสุดจากผู้ใช้'); ?></option>
                         <?php
                         if(($cannedResponses=Canned::responsesByDeptId($ticket->getDeptId()))) {
                             echo '<option value="0" disabled="disabled">
-                                ------------- '.__('คำตอบที่กำหนดไว้').' ------------- </option>';
+                                ------------- '.__('คำตอบสำเร็จรูป').' ------------- </option>';
                             foreach($cannedResponses as $id =>$title)
                                 echo sprintf('<option value="%d">%s</option>',$id,$title);
                         }
@@ -861,7 +861,7 @@ print $note_form->getField('attachments')->render();
                 <td>
                     <textarea name="assign_comments" id="assign_comments"
                         cols="80" rows="7" wrap="soft"
-                        placeholder="<?php echo __('ระบุเหตุผลที่มอบหมายคำขอใช้บริการ หรือคำแนะนำสำหรับเจ้าหน้าที่ๆได้รับมอบหมาย'); ?>"
+                        placeholder="<?php echo __('ระบุเหตุผลที่มอบหมายคำขอใช้บริการ หรือคำแนะนำสำหรับเจ้าหน้าที่ที่ได้รับมอบหมาย'); ?>"
                         class="richtext ifhtml no-bar"><?php echo $info['assign_comments']; ?></textarea>
                     <span class="error"><?php echo $errors['assign_comments']; ?></span><br>
                 </td>
@@ -927,7 +927,7 @@ print $note_form->getField('attachments')->render();
         <?php echo __('คุณแน่ใจหรือว่าต้องการตั้งสถานะคำขอใช้บริการเป็น <b>ยังไม่ได้ตอบกลับ</b>?');?>
     </p>
     <p class="confirm-action" style="display:none;" id="overdue-confirm">
-        <?php echo __('คุณแน่ใจหรือว่าต้องการตั้งสถานะคำขอใช้บริการเป็ร <font color="red"><b>เลยกำหนด</b></font>?');?>
+        <?php echo __('คุณแน่ใจหรือว่าต้องการตั้งสถานะคำขอใช้บริการเป็น <font color="red"><b>เลยกำหนด</b></font>?');?>
     </p>
     <p class="confirm-action" style="display:none;" id="banemail-confirm">
         <?php echo sprintf(__('คุณแน่ใจหรือว่าต้องการ <b>แบน</b> %s?'), $ticket->getEmail());?> <br><br>

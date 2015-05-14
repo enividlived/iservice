@@ -45,11 +45,11 @@ if($res && ($num=db_num_rows($res)))
     $showing=$pageNav->showing().' '._N('premade response', 'premade responses',
         $total);
 else
-    $showing=__('ไม่พบคำตอบที่กำหนดไว้!');
+    $showing=__('ไม่พบคำตอบสำเร็จรูป!');
 
 ?>
 <div class="pull-left" style="width:700px;padding-top:5px;">
- <h2><?php echo __('คำตอบที่กำหนดไว้');?></h2>
+ <h2><?php echo __('คำตอบสำเร็จรูป');?></h2>
  </div>
 <div class="pull-right flush-right" style="padding-top:5px;padding-right:5px;">
     <b><a href="canned.php?a=add" class="Icon newReply"><?php echo __('เพิ่มคำตอบใหม่');?></a></b></div>
@@ -99,12 +99,12 @@ else
      <tr>
         <td colspan="5">
             <?php if($res && $num){ ?>
-            <?php echo __('Select');?>:&nbsp;
+            <?php echo __('เลือก');?>:&nbsp;
             <a id="selectAll" href="#ckb"><?php echo __('ทั้งหมด');?></a>&nbsp;&nbsp;
             <a id="selectNone" href="#ckb"><?php echo __('ไม่มี');?></a>&nbsp;&nbsp;
             <a id="selectToggle" href="#ckb"><?php echo __('สลับ');?></a>&nbsp;&nbsp;
             <?php }else{
-                echo __('ไม่พบคำตอบที่กำหนดไว้');
+                echo __('ไม่พบคำตอบสำเร็จรูป');
             } ?>
         </td>
      </tr>
@@ -129,16 +129,16 @@ endif;
     <hr/>
     <p class="confirm-action" style="display:none;" id="enable-confirm">
         <?php echo sprintf(__('คุณแน่ใจหรือว่าต้องการจะ <b>เปิดใช้งาน</b> %s?'),
-            _N('คำตอบที่กำหนดไว้ที่เลือก', 'คำตอบที่กำหนดไว้ที่เลือก', 2));?>
+            _N('คำตอบสำเร็จรูปที่เลือก', 'คำตอบสำเร็จรูปที่เลือก', 2));?>
     </p>
     <p class="confirm-action" style="display:none;" id="disable-confirm">
         <?php echo sprintf(__('คุณแน่ใจหรือว่าต้องการจะ <b>ปิดใช้งาน</b> %s?'),
-            _N('คำตอบที่กำหนดไว้ที่เลือก', 'คำตอบที่กำหนดไว้ที่เลือก', 2));?>
+            _N('คำตอบสำเร็จรูปที่เลือก', 'คำตอบสำเร็จรูปที่เลือก', 2));?>
     </p>
     <p class="confirm-action" style="display:none;" id="delete-confirm">
-        <font color="red"><strong><?php echo sprintf(__('คุณแน่ใจหรือว่าต้องการจะลบทิ้ง %s?'),
-            _N('คำตอบที่กำหนดไว้ที่เลือก', 'คำตอบที่กำหนดไว้ที่เลือก', 2));?></strong></font>
-        <br><br><?php echo __('ข้อมูลที่ถูกลบไม่สามารถกู้คืนได้ รวมถึงไฟล์แนบด้วย'); ?>
+        <font color="red"><strong><?php echo sprintf(__('คุณแน่ใจหรือว่าต้องการจะลบ %s?'),
+            _N('คำตอบสำเร็จรูปที่เลือก', 'คำตอบสำเร็จรูปที่เลือก', 2));?></strong></font>
+        <br><br><?php echo __('ข้อมูลที่ถูกลบไม่สามารถกู้คืนได้ รวมถึงไฟล์แนบของคำตอบสำเร็จรูปด้วย'); ?>
     </p>
     <div><?php echo __('โปรดยืนยันเพื่อดำเนินการต่อ');?></div>
     <hr style="margin-top:1em"/>

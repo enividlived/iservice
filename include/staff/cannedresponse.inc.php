@@ -3,7 +3,7 @@ if(!defined('OSTSCPINC') || !$thisstaff) die('ปฏิเสธการเข�
 $info=array();
 $qstr='';
 if($canned && $_REQUEST['a']!='add'){
-    $title=__('ปรับปรุงคำตอบที่กำหนดไว้');
+    $title=__('ปรับปรุงคำตอบสำเร็จรูป');
     $action='update';
     $submit_text=__('บันทึก');
     $info=$canned->getInfo();
@@ -13,7 +13,7 @@ if($canned && $_REQUEST['a']!='add'){
     $info['response'] = $canned->getResponseWithImages();
     $info['notes'] = Format::viewableImages($info['notes']);
 }else {
-    $title=__('เพิ่มคำตอบที่กำหนดไว้');
+    $title=__('เพิ่มคำตอบสำเร็จรูป');
     $action='create';
     $submit_text=__('เพิ่มคำตอบ');
     $info['isenabled']=isset($info['isenabled'])?$info['isenabled']:1;
@@ -27,7 +27,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
  <input type="hidden" name="do" value="<?php echo $action; ?>">
  <input type="hidden" name="a" value="<?php echo Format::htmlchars($_REQUEST['a']); ?>">
  <input type="hidden" name="id" value="<?php echo $info['id']; ?>">
- <h2><?php echo __('คำตอบที่กำหนดไว้')?>
+ <h2><?php echo __('คำตอบสำเร็จรูป')?>
  &nbsp;<i class="help-tip icon-question-sign" href="#canned_response"></i></h2>
  <table class="form_table fixed" width="940" border="0" cellspacing="0" cellpadding="2">
     <thead>
@@ -35,7 +35,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
         <tr>
             <th colspan="2">
                 <h4><?php echo $title; ?></h4>
-                <em><?php echo __('การตั้งค่าคำตอบที่กำหนดไว้');?></em>
+                <em><?php echo __('การตั้งค่าคำตอบสำเร็จรูป');?></em>
             </th>
         </tr>
     </thead>
@@ -70,7 +70,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
         </tr>
         <tr>
             <th colspan="2">
-                <em><strong><?php echo __('คำตอบที่กำหนดไว้');?></strong>: <?php echo __('อธิบายให้สั้นและกระชับ');?>&nbsp;</em>
+                <em><strong><?php echo __('คำตอบสำเร็จรูป');?></strong>: <?php echo __('กรุณากรอกรายละเอียดให้เข้าใจง่าย');?>&nbsp;</em>
             </th>
         </tr>
         <tr>
@@ -78,7 +78,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
                 <div><b><?php echo __('เรื่อง');?></b><span class="error">*&nbsp;<?php echo $errors['title']; ?></span></div>
                 <input type="text" size="70" name="title" value="<?php echo $info['title']; ?>">
                 <br><br>
-                <div style="margin-bottom:0.5em"><b><?php echo __('คำตอบที่กำหนดไว้'); ?></b>
+                <div style="margin-bottom:0.5em"><b><?php echo __('คำตอบสำเร็จรูป'); ?></b>
                     <font class="error">*&nbsp;<?php echo $errors['response']; ?></font>
                     &nbsp;&nbsp;&nbsp;(<a class="tip" href="#ticket_variables"><?php echo __('ตัวแปรที่ใช้งานได้'); ?></a>)
                     </div>
@@ -87,7 +87,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
                     data-draft-object-id="<?php if (isset($canned)) echo $canned->getId(); ?>"
                     style="width:98%;" class="richtext draft"><?php
                         echo $info['response']; ?></textarea>
-                <div><h3><?php echo __('ไฟล์แนบที่กำหนดไว้'); ?> <?php echo __('(มีหรือไม่มีก็ได้)'); ?>
+                <div><h3><?php echo __('ไฟล์แนบสำเร็จรูป'); ?> <?php echo __('(หากต้องการแนบไฟล์ไปพร้อมกับคำตอบสำเร็จรูป)'); ?>
                 &nbsp;<i class="help-tip icon-question-sign" href="#canned_attachments"></i></h3>
                 <div class="error"><?php echo $errors['files']; ?></div>
                 </div>
@@ -105,7 +105,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
         </tr>
         <tr>
             <th colspan="2">
-                <em><strong><?php echo __('บันทึกภายใน');?></strong>: <?php echo __('บันทึกย่อของคำตอบที่กำหนดไว้');?>&nbsp;</em>
+                <em><strong><?php echo __('บันทึกภายใน');?></strong>: <?php echo __('บันทึกย่อของคำตอบสำเร็จรูป');?>&nbsp;</em>
             </th>
         </tr>
         <tr>
@@ -118,7 +118,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
 </table>
  <?php if ($canned && $canned->getFilters()) { ?>
     <br/>
-    <div id="msg_warning"><?php echo __('คำตอบที่กำหนดไว้ กำลังถูกใช้งานโดยฟิลเตอร์อีเมล');?>: <?php
+    <div id="msg_warning"><?php echo __('คำตอบสำเร็จรูปกำลังถูกใช้งานโดยฟิลเตอร์อีเมล');?>: <?php
     echo implode(', ', $canned->getFilters()); ?></div>
  <?php } ?>
 <p style="padding-left:225px;">

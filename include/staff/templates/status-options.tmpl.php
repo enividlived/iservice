@@ -21,7 +21,7 @@ $actions= array(
     <a class="tickets-action"
         href="#statuses"><i
         class="icon-flag"></i> <?php
-        echo __('Change Status'); ?></a>
+        echo __('เปลี่ยนสถานะ'); ?></a>
 </span>
 <div id="action-dropdown-statuses"
     class="action-dropdown anchor-right">

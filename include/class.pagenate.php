@@ -78,9 +78,9 @@ class PageNate {
         } else {
             $to= $this->total;
         }
-        $html="&nbsp;".__('Showing')."&nbsp;&nbsp;";
+        $html="&nbsp;".__('กำลังแสดง')."&nbsp;&nbsp;";
         if ($this->total > 0) {
-            $html .= sprintf(__('%1$d - %2$d of %3$d' /* Used in pagination output */),
+            $html .= sprintf(__('%1$d - %2$d จาก %3$d' /* Used in pagination output */),
                $from, $to, $this->total);
         }else{
             $html .= " 0 ";

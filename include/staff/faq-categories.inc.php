@@ -2,13 +2,13 @@
 if(!defined('OSTSTAFFINC') || !$thisstaff) die('ปฏิเสธการเข้าถึง');
 
 ?>
-<h2><?php echo __('คำถามที่พบบ่อย');?></h2>
+<h2><?php echo __('ฐานความรู้');?></h2>
 <form id="kbSearch" action="kb.php" method="get">
     <input type="hidden" name="a" value="search">
     <div>
         <input id="query" type="text" size="20" name="q" value="<?php echo Format::htmlchars($_REQUEST['q']); ?>">
         <select name="cid" id="cid">
-            <option value="">&mdash; <?php echo __('ทุกหัวข้อบทความ');?> &mdash;</option>
+            <option value="">&mdash; <?php echo __('ทุกหัวข้อฐานความรู้');?> &mdash;</option>
             <?php
             $sql='SELECT category_id, name, count(faq.category_id) as faqs '
                 .' FROM '.FAQ_CATEGORY_TABLE.' cat '
@@ -100,7 +100,7 @@ if($_REQUEST['q'] || $_REQUEST['cid'] || $_REQUEST['topicId']) { //Search.
         .' GROUP BY cat.category_id '
         .' ORDER BY cat.name';
     if(($res=db_query($sql)) && db_num_rows($res)) {
-        echo '<div>'.__('คลิกที่หัวข้อบทความเพื่ออ่านหรือจัดการบทความภายใน').'</div>
+        echo '<div>'.__('คลิกที่หัวข้อฐานความรู้เพื่ออ่านหรือแก้ไข').'</div>
                 <ul id="kb">';
         while($row=db_fetch_array($res)) {
 

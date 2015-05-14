@@ -37,14 +37,14 @@ $res=db_query($query);
 if($res && ($num=db_num_rows($res)))
     $showing=$pageNav->showing().' '.__('categories');
 else
-    $showing=__('ไม่พบหัวข้อบทความ!');
+    $showing=__('ไม่พบหัวข้อฐานความรู้!');
 
 ?>
 <div class="pull-left" style="width:700px;padding-top:5px;">
- <h2><?php echo __('หัวข้อบทความ');?></h2>
+ <h2><?php echo __('หัวข้อฐานความรู้');?></h2>
  </div>
 <div class="pull-right flush-right" style="padding-top:5px;padding-right:5px;">
-    <b><a href="categories.php?a=add" class="Icon newCategory"><?php echo __('เพิ่มหัวข้อบทความใหม่');?></a></b></div>
+    <b><a href="categories.php?a=add" class="Icon newCategory"><?php echo __('เพิ่มหัวข้อฐานความรู้ใหม่');?></a></b></div>
 <div class="clear"></div>
 <form action="categories.php" method="POST" name="cat">
  <?php csrf_token(); ?>
@@ -58,7 +58,7 @@ else
             <th width="500"><a <?php echo $name_sort; ?> href="categories.php?<?php echo $qstr; ?>&sort=name"><?php echo __('ชื่อ');?></a></th>
             <th width="150"><a  <?php echo $type_sort; ?> href="categories.php?<?php echo $qstr; ?>&sort=type"><?php echo __('ประเภท');?></a></th>
             <th width="80"><a  <?php echo $faqs_sort; ?> href="categories.php?<?php echo $qstr; ?>&sort=faqs"><?php echo __('บทความ');?></a></th>
-            <th width="150" nowrap><a  <?php echo $updated_sort; ?>href="categories.php?<?php echo $qstr; ?>&sort=updated"><?php echo __('ปรับปรุงล่าสุด');?></a></th>
+            <th width="150" nowrap><a  <?php echo $updated_sort; ?>href="categories.php?<?php echo $qstr; ?>&sort=updated"><?php echo __('อัพเดทล่าสุด');?></a></th>
         </tr>
     </thead>
     <tbody>
@@ -97,7 +97,7 @@ else
             <a id="selectNone" href="#ckb"><?php echo __('ไม่เลือก');?></a>&nbsp;&nbsp;
             <a id="selectToggle" href="#ckb"><?php echo __('สลับ');?></a>&nbsp;&nbsp;
             <?php }else{
-                echo __('ไม่พบหัวข้อบทความ');
+                echo __('ไม่พบหัวข้อฐานความรู้');
             } ?>
         </td>
      </tr>
@@ -122,16 +122,16 @@ endif;
     <hr/>
     <p class="confirm-action" style="display:none;" id="make_public-confirm">
         <?php echo sprintf(__('คุณแน่ใจหรือว่าต้องการทำให้ %s เป็น <b>สาธารณะ</b>?'),
-            _N('หัวข้อบทความที่เลือก', 'หัวข้อบทความที่เลือก', 2));?>
+            _N('หัวข้อฐานความรู้ที่เลือก', 'หัวข้อฐานความรู้ที่เลือก', 2));?>
     </p>
     <p class="confirm-action" style="display:none;" id="make_private-confirm">
         <?php echo sprintf(__('คุณแน่ใจหรือว่าต้องการทำให้ %s เป็น <b>ส่วนตัว</b> (ภายใน)?'),
-            _N('หัวข้อบทความที่เลือก', 'หัวข้อบทความที่เลือก', 2));?>
+            _N('หัวข้อฐานความรู้ที่เลือก', 'หัวข้อฐานความรู้ที่เลือก', 2));?>
     </p>
     <p class="confirm-action" style="display:none;" id="delete-confirm">
         <font color="red"><strong><?php echo sprintf(__('คุณแน่ใจหรือว่าต้องการลบทิ้ง %s?'),
-            _N('หัวข้อบทความที่เลือก', 'หัวข้อบทความที่เลือก', 2));?></strong></font>
-        <br><br><?php echo __('หัวข้อที่ถูกลบจะไม่สามารถกู้คืนได้ รวมถึงบทความถาม-ตอบที่อยู่ภายใต้หัวข้อนั้นๆด้วย'); ?>
+            _N('หัวข้อฐานความรู้ที่เลือก', 'หัวข้อฐานความรู้ที่เลือก', 2));?></strong></font>
+        <br><br><?php echo __('หัวข้อฐานความรู้ที่ถูกลบจะไม่สามารถกู้คืนได้ รวมถึงบทความที่อยู่ภายใต้หัวข้อนั้นๆด้วย'); ?>
     </p>
     <div><?php echo __('โปรดยืนยันเพื่อดำเนินการต่อ');?></div>
     <hr style="margin-top:1em"/>

@@ -3,7 +3,7 @@ if(!defined('OSTSTAFFINC') || !$category || !$thisstaff) die('ปฏิเสธ
 
 ?>
 <div class="pull-left" style="width:700px;padding-top:10px;">
-  <h2><?php echo __('คำถามที่่พบบ่อย');?></h2>
+  <h2><?php echo __('ฐานความรู้');?></h2>
 </div>
 <div class="pull-right flush-right" style="padding-top:5px;padding-right:5px;">&nbsp;</div>
 <div class="clear"></div>
@@ -18,9 +18,9 @@ if(!defined('OSTSTAFFINC') || !$category || !$thisstaff) die('ปฏิเสธ
 </div>
 <?php
 if($thisstaff->canManageFAQ()) {
-    echo sprintf('<div class="cat-manage-bar"><a href="categories.php?id=%d" class="Icon editCategory">'.__('แก้ไขหัวข้อบทความ').'</a>
-             <a href="categories.php" class="Icon deleteCategory">'.__('ลบหัวข้อบทความ').'</a>
-             <a href="faq.php?cid=%d&a=add" class="Icon newFAQ">'.__('เพิ่มบทความใหม่').'</a></div>',
+    echo sprintf('<div class="cat-manage-bar"><a href="categories.php?id=%d" class="Icon editCategory">'.__('แก้ไขหัวข้อฐานความรู้').'</a>
+             <a href="categories.php" class="Icon deleteCategory">'.__('ลบหัวข้อฐานความรู้').'</a>
+             <a href="faq.php?cid=%d&a=add" class="Icon newFAQ">'.__('เพิ่มฐานความรู้ใหม่').'</a></div>',
             $category->getId(),
             $category->getId());
 } else {
@@ -46,6 +46,6 @@ if(($res=db_query($sql)) && db_num_rows($res)) {
     echo '  </ol>
          </div>';
 }else {
-    echo '<strong>'.__('หัวข้อบทความนี้ ไม่มีบทความถาม-ตอบ').'</strong>';
+    echo '<strong>'.__('หัวข้อฐานความรู้นี้ ไม่มีฐานความรู้อยู่ภายใน').'</strong>';
 }
 ?>

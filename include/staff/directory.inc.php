@@ -81,7 +81,7 @@ $query="$select $from $where GROUP BY staff.staff_id ORDER BY $order_by LIMIT ".
              ?>
         </select>
         &nbsp;&nbsp;
-        <input type="submit" name="submit" value="<?php echo __('ฟิลเตอร์');?>"/>
+        <input type="submit" name="submit" value="<?php echo __('ค้นหา');?>"/>
         &nbsp;<i class="help-tip icon-question-sign" href="#apply_filtering_criteria"></i>
     </form>
  </div>

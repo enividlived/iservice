@@ -1521,6 +1521,7 @@ class Ticket {
     }
 
     function clearOverdue() {
+        /*
 
         if(!$this->isOverdue())
             return true;
@@ -1540,6 +1541,7 @@ class Ticket {
         $sql.=' WHERE ticket_id='.db_input($this->getId());
 
         return (db_query($sql) && db_affected_rows());
+        */
     }
 
     //Dept Tranfer...with alert.. done by staff

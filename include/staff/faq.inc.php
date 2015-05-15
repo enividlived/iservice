@@ -3,7 +3,7 @@ if(!defined('OSTSCPINC') || !$thisstaff || !$thisstaff->canManageFAQ()) die('ป
 $info=array();
 $qstr='';
 if($faq){
-    $title=__('อัพเดทบทความ').': '.$faq->getQuestion();
+    $title=__('อัพเดทฐานความรู้').': '.$faq->getQuestion();
     $action='update';
     $submit_text=__('บันทึก');
     $info=$faq->getHashtable();
@@ -13,9 +13,9 @@ if($faq){
     $info['notes']=Format::viewableImages($faq->getNotes());
     $qstr='id='.$faq->getId();
 }else {
-    $title=__('สร้างบทความใหม่');
+    $title=__('สร้างฐานความรู้ใหม่');
     $action='create';
-    $submit_text=__('สร้างบทความ');
+    $submit_text=__('สร้างฐานความรู้');
     if($category) {
         $qstr='cid='.$category->getId();
         $info['category_id']=$category->getId();
@@ -29,7 +29,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
  <input type="hidden" name="do" value="<?php echo $action; ?>">
  <input type="hidden" name="a" value="<?php echo Format::htmlchars($_REQUEST['a']); ?>">
  <input type="hidden" name="id" value="<?php echo $info['id']; ?>">
- <h2><?php echo __('คำถามที่พบบ่อย');?></h2>
+ <h2><?php echo __('ฐานความรู้');?></h2>
  <table class="form_table fixed" width="940" border="0" cellspacing="0" cellpadding="2">
     <thead>
         <tr><td></td><td></td></tr> <!-- For fixed table layout -->
@@ -42,7 +42,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
     <tbody>
         <tr>
             <th colspan="2">
-                <em><?php echo __('ข้อมูลคำถามที่พบบ่อย');?></em>
+                <em><?php echo __('ฐานความรู้');?></em>
             </th>
         </tr>
         <tr>
@@ -53,9 +53,9 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
         </tr>
         <tr>
             <td colspan=2>
-                <div><b><?php echo __('หัวข้อหลักที่เกี่ยวข้อง');?></b>:&nbsp;<span class="faded"><?php echo __('หัวข้อหลักที่บทความนี้มีส่วนเกี่ยวข้อง');?></span></div>
+                <div><b><?php echo __('หัวข้อฐานความรู้');?></b>:&nbsp;<span class="faded"><?php echo __('หัวข้อฐานความรู้ที่เกี่ยวข้อง');?></span></div>
                 <select name="category_id" style="width:350px;">
-                    <option value="0"><?php echo __('เลือกหัวข้อหลัก');?> </option>
+                    <option value="0"><?php echo __('เลือกหัวข้อฐานความรู้');?> </option>
                     <?php
                     $sql='SELECT category_id, name, ispublic FROM '.FAQ_CATEGORY_TABLE;
                     if(($res=db_query($sql)) && db_num_rows($res)) {
@@ -74,7 +74,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
         </tr>
         <tr>
             <td colspan=2>
-                <div><b><?php echo __('ประเภทบทความ');?></b>:
+                <div><b><?php echo __('ประเภทฐานความรู้');?></b>:
                 &nbsp;<i class="help-tip icon-question-sign" href="#listing_type"></i></div>
                 <input type="radio" name="ispublished" value="1" <?php echo $info['ispublished']?'checked="checked"':''; ?>><?php echo __('สาธารณะ (เผยแพร่)');?>
                 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -116,7 +116,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
         if ($topics = Topic::getAllHelpTopics()) { ?>
         <tr>
             <th colspan="2">
-                <em><strong><?php echo __('บริการ');?></strong>: <?php echo __('เลือกบริการที่เกี่ยวข้องกับบทความนี้');?></em>
+                <em><strong><?php echo __('บริการ');?></strong>: <?php echo __('เลือกบริการที่เกี่ยวข้องกับฐานความรู้นี้');?></em>
             </th>
         </tr>
         <tr><td colspan="2">

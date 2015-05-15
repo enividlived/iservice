@@ -102,7 +102,7 @@ $info['id']=$staff->getId();
         </tr>
         <tr>
             <td width="180">
-                <?php echo __('ภาษาที่ต้องการ'); ?>:
+                <?php echo __('ภาษาสำหรับแสดงผล'); ?>:
             </td>
             <td>
         <?php
@@ -137,7 +137,7 @@ $info['id']=$staff->getId();
                     $pagelimit=$info['max_page_size']?$info['max_page_size']:$cfg->getPageSize();
                     for ($i = 5; $i <= 50; $i += 5) {
                         $sel=($pagelimit==$i)?'selected="selected"':'';
-                         echo sprintf('<option value="%d" %s>'.__('แสดง %s รายการ').'</option>',$i,$sel,$i);
+                         echo sprintf('<option value="%d" %s>'.__('%s รายการ').'</option>',$i,$sel,$i);
                     } ?>
                 </select> <?php echo __('ต่อหน้า');?>
             </td>
@@ -159,7 +159,7 @@ $info['id']=$staff->getId();
                         $y=2;
                    } ?>
                 </select>
-                <em><?php echo __('(อัตราการรีเฟรชหน้าคำขอใช้บริการต่อนาที)');?></em>
+                <em><?php echo __('อัตราการรีเฟรชหน้าคำขอใช้บริการต่อนาที');?></em>
             </td>
         </tr>
         <tr>
@@ -176,12 +176,12 @@ $info['id']=$staff->getId();
                   }
                   ?>
                 </select>
-                <em><?php echo __('(ใช้เพื่อแนบท้ายเวลาตอบกลับคำขอใช้บริการ');?></em>
+                <em><?php echo __('ใช้เพื่อแนบท้ายเวลาตอบกลับคำขอใช้บริการ');?></em>
                 &nbsp;<span class="error">&nbsp;<?php echo $errors['default_signature_type']; ?></span>
             </td>
         </tr>
         <tr>
-            <td width="180"><?php echo __('ขนาดกระดาษเริ่มต้น');?>:</td>
+            <td width="180"><?php echo __('ขนาดกระดาษสำหรับพิมพ์');?>:</td>
             <td>
                 <select name="default_paper_size">
                   <option value="none" selected="selected">&mdash; <?php echo __('ไม่มี');?> &mdash;</option>
@@ -201,7 +201,7 @@ $info['id']=$staff->getId();
             <td><?php echo __('แสดงชื่อแผนกแทนชื่อตนเอง');?>:</td>
             <td>
                 <input type="checkbox" name="show_assigned_tickets" <?php echo $info['show_assigned_tickets']?'checked="checked"':''; ?>>
-                <em><?php echo __('แสดงชื่อแผนกแทนชื่อตนเองในหน้าคำขอใช้บริการ');?></em>
+                <em><?php echo __('แสดงชื่อแผนกแทนชื่อตนเองเมื่อรับคำขอใช้บริการ');?></em>
                 &nbsp;<i class="help-tip icon-question-sign" href="#show_assigned_tickets"></i></em>
             </td>
         </tr>

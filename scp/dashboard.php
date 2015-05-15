@@ -30,9 +30,9 @@ require(STAFFINC_DIR.'header.inc.php');
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css?c18eac4"/>
 <link rel="stylesheet" type="text/css" href="css/dashboard.css?c18eac4"/>
 
-<h2><?php echo __('สรุปคำขอใช้บริการ');
+<h2><?php echo __('สถิติการดำเนินงาน');
 ?>&nbsp;<i class="help-tip icon-question-sign" href="#ticket_activity"></i></h2>
-<p><?php echo __('เลือกช่วงเวลาที่ต้องการ เพื่อให้ระบบแสดงข้อมูลเกี่ยวกับคำขอใช้บริการ');?></p>
+<p><?php echo __('เลือกช่วงเวลาที่ต้องการ เพื่อให้ระบบแสดงข้อมูลสถิติการดำเนินงาน');?></p>
 <form class="well form-inline" id="timeframe-form">
     <label>
         <i class="help-tip icon-question-sign" href="#report_timeframe"></i>&nbsp;&nbsp;<?php
@@ -60,8 +60,8 @@ require(STAFFINC_DIR.'header.inc.php');
 </div>
 
 <hr/>
-<h2><?php echo __('สถิติ'); ?>&nbsp;<i class="help-tip icon-question-sign" href="#statistics"></i></h2>
-<p><?php echo __('สถิติคำขอใช้บริการแยกเป็นแผนก หัวข้อบริการ และเจ้าหน้าที่');?></p>
+<h2><?php echo __('รายละเอียด'); ?>&nbsp;<i class="help-tip icon-question-sign" href="#statistics"></i></h2>
+<p><?php echo __('สถิติการดำเนินงานแยกเป็นแผนก คำขอใช้บริการ และเจ้าหน้าที่');?></p>
 <ul class="nav nav-tabs" id="tabular-navigation"></ul>
 
 <div id="table-here"></div>

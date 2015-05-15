@@ -3,7 +3,7 @@ if(!defined('OSTSCPINC') || !$thisstaff || !$thisstaff->canManageFAQ()) die('ป
 $info=array();
 $qstr='';
 if($category && $_REQUEST['a']!='add'){
-    $title=__('อัพเดทหัวข้อบทความ').': '.$category->getName();
+    $title=__('ปรับปรุงหัวข้อฐานความรู้').': '.$category->getName();
     $action='update';
     $submit_text=__('บันทึก');
     $info=$category->getHashtable();
@@ -11,7 +11,7 @@ if($category && $_REQUEST['a']!='add'){
     $info['notes'] = Format::viewableImages($category->getNotes());
     $qstr.='&id='.$category->getId();
 }else {
-    $title=__('เพิ่มหัวข้อบทความ');
+    $title=__('เพิ่มหัวข้อฐานความรู้');
     $action='create';
     $submit_text=__('เพิ่ม');
     $qstr.='&a='.$_REQUEST['a'];
@@ -24,7 +24,7 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
  <input type="hidden" name="do" value="<?php echo $action; ?>">
  <input type="hidden" name="a" value="<?php echo Format::htmlchars($_REQUEST['a']); ?>">
  <input type="hidden" name="id" value="<?php echo $info['id']; ?>">
- <h2><?php echo __('หัวข้อบทความ');?></h2>
+ <h2><?php echo __('หัวข้อฐานความรู้');?></h2>
  <table class="form_table" width="940" border="0" cellspacing="0" cellpadding="2">
     <thead>
         <tr>
@@ -36,12 +36,12 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
     <tbody>
         <tr>
             <th colspan="2">
-                <em><?php echo __('เนื้อหาของหัวข้อบทความ'); ?>
+                <em><?php echo __('เนื้อหาของหัวข้อฐานความรู้'); ?>
                 <i class="help-tip icon-question-sign" href="#category_information"></i></em>
             </th>
         </tr>
         <tr>
-            <td width="180" class="required"><?php echo __('ประเภทหัวข้อบทความ');?>:</td>
+            <td width="180" class="required"><?php echo __('ประเภทหัวข้อฐานความรู้');?>:</td>
             <td>
                 <input type="radio" name="ispublic" value="1" <?php echo $info['ispublic']?'checked="checked"':''; ?>><b><?php echo __('สาธารณะ');?></b> <?php echo __('(เผยแพร่)');?>
                 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -51,12 +51,12 @@ $info=Format::htmlchars(($errors && $_POST)?$_POST:$info);
         </tr>
         <tr>
             <td colspan=2>
-                <div style="padding-top:3px;"><b><?php echo __('ชื่อหัวข้อบทความ');?></b>:&nbsp;<span class="faded"><?php echo __('คำอธิบายสั้นๆ');?></span></div>
+                <div style="padding-top:3px;"><b><?php echo __('ชื่อหัวข้อฐานความรู้');?></b>:&nbsp;<span class="faded"><?php echo __('คำอธิบายสั้นๆ');?></span></div>
                     <input type="text" size="70" name="name" value="<?php echo $info['name']; ?>">
                     &nbsp;<span class="error">*&nbsp;<?php echo $errors['name']; ?></span>
                 <br>
                 <div style="padding-top:5px;">
-                    <b><?php echo __('คำอธิบายหัวข้อบทความ');?></b>:&nbsp;<span class="faded"><?php echo __('คำอธิบายเกี่ยวกับหัวข้อของบทความ');?></span>
+                    <b><?php echo __('คำอธิบายหัวข้อฐานความรู้');?></b>:&nbsp;<span class="faded"><?php echo __('คำอธิบายเกี่ยวกับหัวข้อของฐานความรู้');?></span>
                     &nbsp;
                     <font class="error">*&nbsp;<?php echo $errors['description']; ?></font></div>
                     <textarea class="richtext" name="description" cols="21" rows="12" style="width:98%;"><?php echo $info['description']; ?></textarea>

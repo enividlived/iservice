@@ -4,9 +4,9 @@ if(!defined('OSTSTAFFINC') || !$faq || !$thisstaff) die('ปฏิเสธก�
 $category=$faq->getCategory();
 
 ?>
-<h2><?php echo __('คำถามที่พบบ่อย');?></h2>
+<h2><?php echo __('ฐานความรู้');?></h2>
 <div id="breadcrumbs">
-    <a href="kb.php"><?php echo __('ทุกหัวข้อบทความ');?></a>
+    <a href="kb.php"><?php echo __('ทุกหัวข้อฐานความรู้');?></a>
     &raquo; <a href="kb.php?cid=<?php echo $category->getId(); ?>"><?php echo $category->getName(); ?></a>
     <span class="faded">(<?php echo $category->isPublic()?__('สาธารณะ'):__('ภายใน'); ?>)</span>
 </div>
@@ -16,7 +16,7 @@ $category=$faq->getCategory();
 <div class="pull-right flush-right" style="padding-top:5px;padding-right:5px;">
 <?php
 if($thisstaff->canManageFAQ()) {
-    echo sprintf('<a href="faq.php?id=%d&a=edit" class="Icon newHelpTopic">'.__('แก้ไขบทความ').'</a>',
+    echo sprintf('<a href="faq.php?id=%d&a=edit" class="Icon newHelpTopic">'.__('แก้ไขฐานความรู้').'</a>',
             $faq->getId());
 }
 ?>
@@ -50,16 +50,16 @@ if($thisstaff->canManageFAQ()) {
                 <option value=""><?php echo __('การกระทำ');?></option>
                 <?php
                 if($faq->isPublished()) { ?>
-                <option value="unpublish"><?php echo __('หยุดเผยแพร่บทความ');?></option>
+                <option value="unpublish"><?php echo __('หยุดเผยแพร่ฐานความรู้');?></option>
                 <?php
                 }else{ ?>
-                <option value="publish"><?php echo __('เผยแพร่บทความ');?></option>
+                <option value="publish"><?php echo __('เผยแพร่ฐานความรู้');?></option>
                 <?php
                 } ?>
-                <option value="edit"><?php echo __('แก้ไขบทความ');?></option>
-                <option value="delete"><?php echo __('ลบบทความ');?></option>
+                <option value="edit"><?php echo __('แก้ไขฐานความรู้');?></option>
+                <option value="delete"><?php echo __('ลบฐานความรู้');?></option>
             </select>
-            &nbsp;&nbsp;<input type="submit" name="submit" value="<?php echo __('ไป');?>">
+            &nbsp;&nbsp;<input type="submit" name="submit" value="<?php echo __('กระทำ');?>">
         </div>
     </form>
    </div>

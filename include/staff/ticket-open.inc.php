@@ -206,7 +206,7 @@ if ($_POST)
 
          <tr>
             <td width="160">
-                <?php echo __('วันครบกำหนด');?>:
+                <?php echo __('ครบกำหนด');?>:
             </td>
             <td>
                 <input class="dp" id="duedate" name="duedate" value="<?php echo Format::htmlchars($info['duedate']); ?>" size="12" autocomplete=OFF>
@@ -285,9 +285,9 @@ if ($_POST)
             if(($cannedResponses=Canned::getCannedResponses())) {
                 ?>
                 <div style="margin-top:0.3em;margin-bottom:0.5em">
-                    <?php echo __('คำตอบที่กำหนดไว้');?>:&nbsp;
+                    <?php echo __('คำตอบสำเร็จรูป');?>:&nbsp;
                     <select id="cannedResp" name="cannedResp">
-                        <option value="0" selected="selected">&mdash; <?php echo __('เลือกคำตอบที่กำหนดไว้');?> &mdash;</option>
+                        <option value="0" selected="selected">&mdash; <?php echo __('เลือกคำตอบสำเร็จรูป');?> &mdash;</option>
                         <?php
                         foreach($cannedResponses as $id =>$title) {
                             echo sprintf('<option value="%d">%s</option>',$id,$title);
@@ -307,7 +307,7 @@ if ($_POST)
                     data-signature="<?php
                         echo Format::htmlchars(Format::viewableImages($signature)); ?>"
                     data-signature-field="signature" data-dept-field="deptId"
-                    placeholder="<?php echo __('คำตอบสำหรับคำขอใช้บริการ'); ?>"
+                    placeholder="<?php echo __('คำตอบล่วงหน้าสำหรับคำขอใช้บริการที่จะสร้าง'); ?>"
                     name="response" id="response" cols="21" rows="8"
                     style="width:80%;"><?php echo $info['response']; ?></textarea>
                     <div class="attachments">
@@ -318,7 +318,7 @@ print $response_form->getField('attachments')->render();
 
                 <table border="0" cellspacing="0" cellpadding="2" width="100%">
             <tr>
-                <td width="100"><?php echo __('สถานะคำขอใช้บริการ');?>:</td>
+                <td width="100"><?php echo __('สถานะหลังจากตอบกลับ');?>:</td>
                 <td>
                     <select name="statusId">
                     <?php
